@@ -1,0 +1,2 @@
+# Keine externen Abhängigkeiten
+GitPython>=3.1.0
