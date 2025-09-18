@@ -66,6 +66,8 @@ class SimpleJobInit(object):
     def get_persistent_file_path(self, file_ending: str):
         return f"{self._persistent_files_path_stub}.{file_ending}"
 
+    def get_task_version(self, include_git_tag: bool = False):
+        return get_task_version(self._script_file_path, include_git_tag)
 
 
 def get_task_version(script_file_path: str, include_git_tag: bool = False) -> str:
