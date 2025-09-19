@@ -69,6 +69,19 @@ class SimpleJobInit(object):
     def get_task_version(self, include_git_tag: bool = False):
         return get_task_version(self._script_file_path, include_git_tag)
 
+    @staticmethod
+    def get_postgres_sqlalchemy_engine(db_config: configparser.ConfigParser):
+        from sqlalchemy import create_engine
+        from urllib.parse import quote_plus
+        connection_string = 'postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'.format(
+                db_user=db_config['db_user'],
+                db_password=quote_plus(db_config['db_password']),
+                db_host=db_config['db_host'],
+                db_port=int(db_config['db_port']),
+                db_name=db_config['db_name']
+        )
+        return create_engine(connection_string)
+
 
 def get_task_version(script_file_path: str, include_git_tag: bool = False) -> str:
     """Erzeuge eine Versionszeichenkette für das Skript.
