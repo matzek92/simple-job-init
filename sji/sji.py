@@ -40,10 +40,13 @@ class SimpleJobInit(object):
             logging_config = self._config['logging']
             level = logging_config.get('level', logging.INFO)
             self._logger.setLevel(level)
-            self._logger.addHandler(logging.StreamHandler())
+
             log_rotation_when = logging_config.get('log_rotation_when', 'midnight')
-            log_rotation_backup_count = logging_config.get('log_rotation_backup_count', 0)
+            log_rotation_backup_count = int(logging_config.get('log_rotation_backup_count', 0))
             log_file_handler = TimedRotatingFileHandler(self._log_filepath, encoding='utf-8', when=log_rotation_when, backupCount=log_rotation_backup_count)
+            log_format = logging_config.get('log_format', '[%(asctime)s][%(levelname)s][%(name)s][%(module)s - %(funcName)s] %(message)s')
+            formatter = logging.Formatter(log_format)
+            log_file_handler.setFormatter(formatter)
             self._logger.addHandler(log_file_handler)
         
        
@@ -66,8 +69,45 @@ class SimpleJobInit(object):
     def get_persistent_file_path(self, file_ending: str):
         return f"{self._persistent_files_path_stub}.{file_ending}"
 
-    def get_task_version(self, include_git_tag: bool = False):
-        return get_task_version(self._script_file_path, include_git_tag)
+    def get_job_script_version(self, include_git_tag: bool = False):
+        return get_script_version(self._script_file_path, include_git_tag)
+
+    def get_config_file_hash(self) -> str:
+        """Berechne den SHA-256-Dateihash der Konfigurationsdatei (Binärinhalt)."""
+        hasher = hashlib.sha256()
+        with open(self._config_filepath, "rb") as f:
+            for chunk in iter(lambda: f.read(8192), b""):
+                hasher.update(chunk)
+        return hasher.hexdigest()
+
+    def get_config_file_version(self) -> str:
+        """Kombiniert den Konfigurations-Hash mit dem letzten Änderungszeitpunkt der INI-Datei.
+
+        Format: "cfg_<YYYY-MM-DD_HH:MM:SS>_<sha256>" (Zeit in UTC)
+        """
+        last_modification_timestamp = os.path.getmtime(self._config_filepath)
+        formatted_timestamp = datetime.fromtimestamp(
+            last_modification_timestamp, tz=timezone.utc
+        ).strftime('%Y-%m-%d_%H:%M:%S')
+        cfg_hash = self.get_config_file_hash()  
+        return f"cfg_{formatted_timestamp}_{cfg_hash}"
+
+    def log_config(self, secret_fields=None):
+        """Loggt die aktuelle Konfiguration, maskiert angegebene Geheimfelder.
+
+        Args:
+            secret_fields: Iterable von Feldnamen (case-insensitive), die maskiert
+                           werden sollen; gilt für alle Sections.
+        """
+    
+        secret_set = {str(name).lower() for name in (secret_fields or [])}
+
+        self._logger.info("Konfiguration (maskiert):")
+        for section in sorted(self._config.sections()):
+            self._logger.info(f"[{section}]")
+            for key, value in sorted(self._config.items(section)):
+                display_value = '********' if key.lower() in secret_set else value.strip()
+                self._logger.info(f"{key} = {display_value}")
 
     @staticmethod
     def get_postgres_sqlalchemy_engine(db_config: configparser.ConfigParser):
@@ -83,7 +123,7 @@ class SimpleJobInit(object):
         return create_engine(connection_string)
 
 
-def get_task_version(script_file_path: str, include_git_tag: bool = False) -> str:
+def get_script_version(script_file_path: str, include_git_tag: bool = False) -> str:
     """Erzeuge eine Versionszeichenkette für das Skript.
 
     Bevorzugt Git-Informationen (über GitPython), andernfalls Fallback auf

@@ -11,7 +11,7 @@ pip install sji
 ## Verwendung
 
 ```python
-from sji import SimpleJobInit
+from sji import SimpleJobInit, get_script_version
 
 # __file__ an SimpleJobInit übergeben
 sji = SimpleJobInit(__file__)
@@ -25,6 +25,20 @@ value = cfg.get('section', 'key', fallback='default')
 
 # Persistente Datei-Pfade erhalten
 csv_path = sji.get_persistent_file_path('csv')
+
+# Temporäre Datei-Pfade erhalten
+tmp_path = sji.get_tmp_file_path('work.tmp')
+
+# Versionen ermitteln
+sji.logger.info(f"script_version={sji.get_job_script_version(include_git_tag=True)}")
+sji.logger.info(f"config_file_hash={sji.get_config_file_hash()}")
+sji.logger.info(f"config_file_version={sji.get_config_file_version()}")
+
+# Top-Level-Funktion (unabhängig von der Klasse):
+script_version = get_script_version(__file__, include_git_tag=True)
+
+# Konfiguration mit Maskierung loggen
+sji.log_config(secret_fields=["password", "db_password", "api_key", "token"]) 
 ```
 
 Dabei werden automatisch erzeugt/genutzt:
@@ -56,7 +70,18 @@ key = some-value
   - `logger`: konfigurierter `logging.Logger`
   - `config`: `configparser.ConfigParser`
 - Methoden
-  - `get_persistent_file_path(file_ending: str) -> str`: gibt Pfad `<skriptname>.<file_ending>` zurück
+  - `get_tmp_file_path(file_name: str) -> str`: Pfad im `tmp/`-Verzeichnis
+  - `get_persistent_file_path(file_ending: str) -> str`: Pfad `<skriptname>.<file_ending>`
+  - `get_job_script_version(include_git_tag: bool = False) -> str`: ermittelt Skriptversion (Git/FS)
+  - `get_config_file_hash() -> str`: SHA-256 Hash der INI-Datei
+  - `get_config_file_version() -> str`: `cfg_<UTC-Zeit>_<sha256>` basierend auf Datei-mtime und Hash
+  - `log_config(secret_fields) -> None`: loggt INI-Inhalt, maskiert definierte Felder (case-insensitive)
+  - `get_postgres_sqlalchemy_engine(db_config)`: baut SQLAlchemy-Engine aus INI-Werten
+
+### Top-Level-Funktion
+
+- `get_script_version(script_file_path: str, include_git_tag: bool = False) -> str`
+  - Wie `get_job_script_version`, aber als freie Funktion für eigenständige Nutzung
 
 ## Lizenz
 
