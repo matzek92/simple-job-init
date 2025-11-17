@@ -109,8 +109,7 @@ class SimpleJobInit(object):
                 display_value = '********' if key.lower() in secret_set else value.strip()
                 self._logger.info(f"{key} = {display_value}")
 
-    @staticmethod
-    def get_postgres_sqlalchemy_engine(db_config: configparser.ConfigParser):
+    def get_postgres_sqlalchemy_engine(self, db_config: configparser.ConfigParser):
         from sqlalchemy import create_engine
         from urllib.parse import quote_plus
         connection_string = 'postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'.format(
@@ -120,8 +119,11 @@ class SimpleJobInit(object):
                 db_port=int(db_config['db_port']),
                 db_name=db_config['db_name']
         )
-        return create_engine(connection_string)
-
+        return create_engine(connection_string,
+            connect_args={
+                'application_name': f'python-{self._script_basename}'
+            }
+        )
 
 def get_script_version(script_file_path: str, include_git_tag: bool = False) -> str:
     """Erzeuge eine Versionszeichenkette für das Skript.

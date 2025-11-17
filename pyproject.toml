@@ -4,10 +4,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sji"
-version = "0.2.0"
+version = "0.2.1"
 description = "SJI - Eine einfache Python-Bibliothek für Job-Initialisierung"
 readme = "README.md"
-license = {file = "LICENSE"}
+license-files = ["LICENSE"]
 authors = [
     {name = "matzek92", email = "your.email@example.com"},
 ]
