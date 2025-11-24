@@ -80,6 +80,15 @@ class SimpleJobInit(object):
                 hasher.update(chunk)
         return hasher.hexdigest()
 
+    @property
+    def credentials(self) -> Dict[str, Any]:
+        credentials_filepath = self.get_persistent_file_path("credentials.ini")
+        if not os.path.isfile(credentials_filepath):
+            raise ValueError("Credentials file {} missing...".format(credentials_filepath))
+        credentials = configparser.ConfigParser()
+        credentials.read(credentials_filepath)
+        return credentials
+
     def get_config_file_version(self) -> str:
         """Kombiniert den Konfigurations-Hash mit dem letzten Änderungszeitpunkt der INI-Datei.
 
