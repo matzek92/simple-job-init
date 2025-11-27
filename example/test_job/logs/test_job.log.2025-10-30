@@ -1,0 +1,302 @@
+[2025-10-30 14:25:51,611][INFO][test_job][test_job - <module>] Test job started
+[2025-10-30 14:25:52,157][INFO][test_job][test_job - <module>] job_version=git_ab8e170e_dirty
+[2025-10-30 14:25:52,158][INFO][test_job][test_job - <module>] config_hash=151a9fd8d85b7f84ee18ffb34afd8ef449c598d4c51bbcec31b29b3aa3da5d9b
+[2025-10-30 14:25:52,158][INFO][test_job][test_job - <module>] config_version=cfg_2025-09-04_09:02:58_151a9fd8d85b7f84ee18ffb34afd8ef449c598d4c51bbcec31b29b3aa3da5d9b
+[2025-10-30 14:25:52,158][INFO][test_job][sji - log_config] Konfiguration (maskiert):
+[2025-10-30 14:25:52,158][INFO][test_job][sji - log_config] [logging]
+[2025-10-30 14:25:52,159][INFO][test_job][sji - log_config] level = DEBUG
+[2025-10-30 14:25:52,159][INFO][test_job][sji - log_config] log_rotation_backup_count = 0
+[2025-10-30 14:25:52,162][INFO][test_job][sji - log_config] log_rotation_when = midnight
+[2025-10-30 14:25:52,163][INFO][test_job][test_job - <module>] Tempfile created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:25:53,166][INFO][test_job][test_job - <module>] Tempfile deleted: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:25:53,170][INFO][test_job][test_job - <module>] Persistent file created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\test_job.txt
+[2025-10-30 14:25:53,171][INFO][test_job][test_job - <module>] Test job finished
+[2025-10-30 14:25:54,583][INFO][test_job][test_job - <module>] Test job started
+[2025-10-30 14:25:55,123][INFO][test_job][test_job - <module>] job_version=git_ab8e170e_dirty
+[2025-10-30 14:25:55,123][INFO][test_job][test_job - <module>] config_hash=151a9fd8d85b7f84ee18ffb34afd8ef449c598d4c51bbcec31b29b3aa3da5d9b
+[2025-10-30 14:25:55,123][INFO][test_job][test_job - <module>] config_version=cfg_2025-09-04_09:02:58_151a9fd8d85b7f84ee18ffb34afd8ef449c598d4c51bbcec31b29b3aa3da5d9b
+[2025-10-30 14:25:55,124][INFO][test_job][sji - log_config] Konfiguration (maskiert):
+[2025-10-30 14:25:55,124][INFO][test_job][sji - log_config] [logging]
+[2025-10-30 14:25:55,124][INFO][test_job][sji - log_config] level = DEBUG
+[2025-10-30 14:25:55,124][INFO][test_job][sji - log_config] log_rotation_backup_count = 0
+[2025-10-30 14:25:55,124][INFO][test_job][sji - log_config] log_rotation_when = midnight
+[2025-10-30 14:25:55,125][INFO][test_job][test_job - <module>] Tempfile created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:25:56,127][INFO][test_job][test_job - <module>] Tempfile deleted: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:25:56,132][INFO][test_job][test_job - <module>] Persistent file created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\test_job.txt
+[2025-10-30 14:25:56,133][INFO][test_job][test_job - <module>] Test job finished
+[2025-10-30 14:26:15,503][INFO][test_job][test_job - <module>] Test job started
+[2025-10-30 14:26:16,033][INFO][test_job][test_job - <module>] job_version=git_ab8e170e_dirty
+[2025-10-30 14:26:16,033][INFO][test_job][test_job - <module>] config_hash=7acc3678f1ad09417c1b0a88958da3f8b33d3aba2e4d239c8a9fd388950086c9
+[2025-10-30 14:26:16,033][INFO][test_job][test_job - <module>] config_version=cfg_2025-10-30_13:26:09_7acc3678f1ad09417c1b0a88958da3f8b33d3aba2e4d239c8a9fd388950086c9
+[2025-10-30 14:26:16,033][INFO][test_job][sji - log_config] Konfiguration (maskiert):
+[2025-10-30 14:26:16,034][INFO][test_job][sji - log_config] [logging]
+[2025-10-30 14:26:16,034][INFO][test_job][sji - log_config] level = DEBUG
+[2025-10-30 14:26:16,034][INFO][test_job][sji - log_config] log_rotation_backup_count = 0
+[2025-10-30 14:26:16,034][INFO][test_job][sji - log_config] log_rotation_when = midnight
+[2025-10-30 14:26:16,034][INFO][test_job][sji - log_config] [secrets]
+[2025-10-30 14:26:16,034][INFO][test_job][sji - log_config] api_key = 12***90
+[2025-10-30 14:26:16,035][INFO][test_job][sji - log_config] db_password = 12***90
+[2025-10-30 14:26:16,035][INFO][test_job][sji - log_config] password = 12***90
+[2025-10-30 14:26:16,035][INFO][test_job][sji - log_config] token = 12***90
+[2025-10-30 14:26:16,036][INFO][test_job][test_job - <module>] Tempfile created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:26:17,039][INFO][test_job][test_job - <module>] Tempfile deleted: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:26:17,045][INFO][test_job][test_job - <module>] Persistent file created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\test_job.txt
+[2025-10-30 14:26:17,045][INFO][test_job][test_job - <module>] Test job finished
+[2025-10-30 14:26:48,372][INFO][test_job][test_job - <module>] Test job started
+[2025-10-30 14:26:48,931][INFO][test_job][test_job - <module>] job_version=git_ab8e170e_dirty
+[2025-10-30 14:26:48,931][INFO][test_job][test_job - <module>] config_hash=7acc3678f1ad09417c1b0a88958da3f8b33d3aba2e4d239c8a9fd388950086c9
+[2025-10-30 14:26:48,931][INFO][test_job][test_job - <module>] config_version=cfg_2025-10-30_13:26:09_7acc3678f1ad09417c1b0a88958da3f8b33d3aba2e4d239c8a9fd388950086c9
+[2025-10-30 14:26:48,931][INFO][test_job][sji - log_config] Konfiguration (maskiert):
+[2025-10-30 14:26:48,931][INFO][test_job][sji - log_config] [logging]
+[2025-10-30 14:26:48,932][INFO][test_job][sji - log_config] level = DEBUG
+[2025-10-30 14:26:48,932][INFO][test_job][sji - log_config] log_rotation_backup_count = 0
+[2025-10-30 14:26:48,932][INFO][test_job][sji - log_config] log_rotation_when = midnight
+[2025-10-30 14:26:48,932][INFO][test_job][sji - log_config] [secrets]
+[2025-10-30 14:26:48,932][INFO][test_job][sji - log_config] api_key = ********
+[2025-10-30 14:26:48,932][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:26:48,932][INFO][test_job][sji - log_config] password = ********
+[2025-10-30 14:26:48,933][INFO][test_job][sji - log_config] token = ********
+[2025-10-30 14:26:48,934][INFO][test_job][test_job - <module>] Tempfile created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:26:49,937][INFO][test_job][test_job - <module>] Tempfile deleted: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:26:49,940][INFO][test_job][test_job - <module>] Persistent file created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\test_job.txt
+[2025-10-30 14:26:49,941][INFO][test_job][test_job - <module>] Test job finished
+[2025-10-30 14:27:15,121][INFO][test_job][test_job - <module>] Test job started
+[2025-10-30 14:27:15,689][INFO][test_job][test_job - <module>] job_version=git_ab8e170e_dirty
+[2025-10-30 14:27:15,689][INFO][test_job][test_job - <module>] config_hash=ec3e6aef5eba287cfeb5ae659ba832089ef6e049bf990a6e0bb5a422c59d89f0
+[2025-10-30 14:27:15,690][INFO][test_job][test_job - <module>] config_version=cfg_2025-10-30_13:27:07_ec3e6aef5eba287cfeb5ae659ba832089ef6e049bf990a6e0bb5a422c59d89f0
+[2025-10-30 14:27:15,690][INFO][test_job][sji - log_config] Konfiguration (maskiert):
+[2025-10-30 14:27:15,690][INFO][test_job][sji - log_config] [db_config]
+[2025-10-30 14:27:15,690][INFO][test_job][sji - log_config] db_host = localhost
+[2025-10-30 14:27:15,690][INFO][test_job][sji - log_config] db_name = test_db
+[2025-10-30 14:27:15,691][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:27:15,691][INFO][test_job][sji - log_config] db_port = 5432
+[2025-10-30 14:27:15,691][INFO][test_job][sji - log_config] db_user = postgres
+[2025-10-30 14:27:15,691][INFO][test_job][sji - log_config] [logging]
+[2025-10-30 14:27:15,691][INFO][test_job][sji - log_config] level = DEBUG
+[2025-10-30 14:27:15,691][INFO][test_job][sji - log_config] log_rotation_backup_count = 0
+[2025-10-30 14:27:15,691][INFO][test_job][sji - log_config] log_rotation_when = midnight
+[2025-10-30 14:27:15,692][INFO][test_job][sji - log_config] [secrets]
+[2025-10-30 14:27:15,692][INFO][test_job][sji - log_config] api_key = ********
+[2025-10-30 14:27:15,692][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:27:15,692][INFO][test_job][sji - log_config] password = ********
+[2025-10-30 14:27:15,692][INFO][test_job][sji - log_config] token = ********
+[2025-10-30 14:27:15,693][INFO][test_job][test_job - <module>] Tempfile created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:27:16,695][INFO][test_job][test_job - <module>] Tempfile deleted: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:27:16,700][INFO][test_job][test_job - <module>] Persistent file created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\test_job.txt
+[2025-10-30 14:27:16,701][INFO][test_job][test_job - <module>] Test job finished
+[2025-10-30 14:28:33,122][INFO][test_job][test_job - <module>] Test job started
+[2025-10-30 14:28:33,659][INFO][test_job][test_job - <module>] job_version=git_ab8e170e_dirty
+[2025-10-30 14:28:33,659][INFO][test_job][test_job - <module>] config_hash=ec3e6aef5eba287cfeb5ae659ba832089ef6e049bf990a6e0bb5a422c59d89f0
+[2025-10-30 14:28:33,659][INFO][test_job][test_job - <module>] config_version=cfg_2025-10-30_13:27:07_ec3e6aef5eba287cfeb5ae659ba832089ef6e049bf990a6e0bb5a422c59d89f0
+[2025-10-30 14:28:33,659][INFO][test_job][sji - log_config] Konfiguration (maskiert):
+[2025-10-30 14:28:33,660][INFO][test_job][sji - log_config] [db_config]
+[2025-10-30 14:28:33,660][INFO][test_job][sji - log_config] db_host = localhost
+[2025-10-30 14:28:33,660][INFO][test_job][sji - log_config] db_name = test_db
+[2025-10-30 14:28:33,660][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:28:33,660][INFO][test_job][sji - log_config] db_port = 5432
+[2025-10-30 14:28:33,661][INFO][test_job][sji - log_config] db_user = postgres
+[2025-10-30 14:28:33,661][INFO][test_job][sji - log_config] [logging]
+[2025-10-30 14:28:33,661][INFO][test_job][sji - log_config] level = DEBUG
+[2025-10-30 14:28:33,661][INFO][test_job][sji - log_config] log_rotation_backup_count = 0
+[2025-10-30 14:28:33,661][INFO][test_job][sji - log_config] log_rotation_when = midnight
+[2025-10-30 14:28:33,661][INFO][test_job][sji - log_config] [secrets]
+[2025-10-30 14:28:33,661][INFO][test_job][sji - log_config] api_key = ********
+[2025-10-30 14:28:33,661][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:28:33,661][INFO][test_job][sji - log_config] password = ********
+[2025-10-30 14:28:33,662][INFO][test_job][sji - log_config] token = ********
+[2025-10-30 14:28:33,663][INFO][test_job][test_job - <module>] Tempfile created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:28:34,666][INFO][test_job][test_job - <module>] Tempfile deleted: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:28:34,672][INFO][test_job][test_job - <module>] Persistent file created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\test_job.txt
+[2025-10-30 14:28:34,673][INFO][test_job][test_job - <module>] Test job finished
+[2025-10-30 14:29:18,670][INFO][test_job][test_job - <module>] Test job started
+[2025-10-30 14:29:19,214][INFO][test_job][test_job - <module>] job_version=git_ab8e170e_dirty
+[2025-10-30 14:29:19,214][INFO][test_job][test_job - <module>] config_hash=ec3e6aef5eba287cfeb5ae659ba832089ef6e049bf990a6e0bb5a422c59d89f0
+[2025-10-30 14:29:19,214][INFO][test_job][test_job - <module>] config_version=cfg_2025-10-30_13:27:07_ec3e6aef5eba287cfeb5ae659ba832089ef6e049bf990a6e0bb5a422c59d89f0
+[2025-10-30 14:29:19,215][INFO][test_job][sji - log_config] Konfiguration (maskiert):
+[2025-10-30 14:29:19,215][INFO][test_job][sji - log_config] [db_config]
+[2025-10-30 14:29:19,215][INFO][test_job][sji - log_config] db_host = localhost
+[2025-10-30 14:29:19,215][INFO][test_job][sji - log_config] db_name = test_db
+[2025-10-30 14:29:19,215][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:29:19,215][INFO][test_job][sji - log_config] db_port = 5432
+[2025-10-30 14:29:19,216][INFO][test_job][sji - log_config] db_user = postgres
+[2025-10-30 14:29:19,216][INFO][test_job][sji - log_config] [logging]
+[2025-10-30 14:29:19,216][INFO][test_job][sji - log_config] level = DEBUG
+[2025-10-30 14:29:19,216][INFO][test_job][sji - log_config] log_rotation_backup_count = 0
+[2025-10-30 14:29:19,216][INFO][test_job][sji - log_config] log_rotation_when = midnight
+[2025-10-30 14:29:19,216][INFO][test_job][sji - log_config] [secrets]
+[2025-10-30 14:29:19,216][INFO][test_job][sji - log_config] api_key = ********
+[2025-10-30 14:29:19,217][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:29:19,217][INFO][test_job][sji - log_config] password = ********
+[2025-10-30 14:29:19,217][INFO][test_job][sji - log_config] token = ********
+[2025-10-30 14:29:19,218][INFO][test_job][test_job - <module>] Tempfile created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:29:20,219][INFO][test_job][test_job - <module>] Tempfile deleted: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:29:20,221][INFO][test_job][test_job - <module>] Persistent file created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\test_job.txt
+[2025-10-30 14:29:20,221][INFO][test_job][test_job - <module>] Test job finished
+[2025-10-30 14:29:45,551][INFO][test_job][test_job - <module>] Test job started
+[2025-10-30 14:29:46,082][INFO][test_job][test_job - <module>] job_version=git_ab8e170e_dirty
+[2025-10-30 14:29:46,082][INFO][test_job][test_job - <module>] config_hash=ec3e6aef5eba287cfeb5ae659ba832089ef6e049bf990a6e0bb5a422c59d89f0
+[2025-10-30 14:29:46,082][INFO][test_job][test_job - <module>] config_version=cfg_2025-10-30_13:27:07_ec3e6aef5eba287cfeb5ae659ba832089ef6e049bf990a6e0bb5a422c59d89f0
+[2025-10-30 14:29:46,082][INFO][test_job][sji - log_config] Konfiguration (maskiert):
+[2025-10-30 14:29:46,083][INFO][test_job][sji - log_config] [db_config]
+[2025-10-30 14:29:46,083][INFO][test_job][sji - log_config] db_host = localhost
+[2025-10-30 14:29:46,083][INFO][test_job][sji - log_config] db_name = test_db
+[2025-10-30 14:29:46,083][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:29:46,083][INFO][test_job][sji - log_config] db_port = 5432
+[2025-10-30 14:29:46,084][INFO][test_job][sji - log_config] db_user = postgres
+[2025-10-30 14:29:46,084][INFO][test_job][sji - log_config] [logging]
+[2025-10-30 14:29:46,084][INFO][test_job][sji - log_config] level = DEBUG
+[2025-10-30 14:29:46,084][INFO][test_job][sji - log_config] log_rotation_backup_count = 0
+[2025-10-30 14:29:46,085][INFO][test_job][sji - log_config] log_rotation_when = midnight
+[2025-10-30 14:29:46,085][INFO][test_job][sji - log_config] [secrets]
+[2025-10-30 14:29:46,085][INFO][test_job][sji - log_config] api_key = ********
+[2025-10-30 14:29:46,085][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:29:46,085][INFO][test_job][sji - log_config] password = ********
+[2025-10-30 14:29:46,085][INFO][test_job][sji - log_config] token = ********
+[2025-10-30 14:29:46,087][INFO][test_job][test_job - <module>] Tempfile created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:29:47,089][INFO][test_job][test_job - <module>] Tempfile deleted: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:29:47,092][INFO][test_job][test_job - <module>] Persistent file created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\test_job.txt
+[2025-10-30 14:29:47,093][INFO][test_job][test_job - <module>] Test job finished
+[2025-10-30 14:35:28,142][INFO][test_job][test_job - <module>] Test job started
+[2025-10-30 14:35:28,751][INFO][test_job][test_job - <module>] job_version=git_ab8e170e_dirty
+[2025-10-30 14:35:28,751][INFO][test_job][test_job - <module>] config_hash=ec3e6aef5eba287cfeb5ae659ba832089ef6e049bf990a6e0bb5a422c59d89f0
+[2025-10-30 14:35:28,751][INFO][test_job][test_job - <module>] config_version=cfg_2025-10-30_13:27:07_ec3e6aef5eba287cfeb5ae659ba832089ef6e049bf990a6e0bb5a422c59d89f0
+[2025-10-30 14:35:28,751][INFO][test_job][sji - log_config] Konfiguration (maskiert):
+[2025-10-30 14:35:28,752][INFO][test_job][sji - log_config] [db_config]
+[2025-10-30 14:35:28,752][INFO][test_job][sji - log_config] db_host = localhost
+[2025-10-30 14:35:28,752][INFO][test_job][sji - log_config] db_name = test_db
+[2025-10-30 14:35:28,752][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:35:28,752][INFO][test_job][sji - log_config] db_port = 5432
+[2025-10-30 14:35:28,754][INFO][test_job][sji - log_config] db_user = postgres
+[2025-10-30 14:35:28,754][INFO][test_job][sji - log_config] [logging]
+[2025-10-30 14:35:28,754][INFO][test_job][sji - log_config] level = DEBUG
+[2025-10-30 14:35:28,754][INFO][test_job][sji - log_config] log_rotation_backup_count = 0
+[2025-10-30 14:35:28,754][INFO][test_job][sji - log_config] log_rotation_when = midnight
+[2025-10-30 14:35:28,754][INFO][test_job][sji - log_config] [secrets]
+[2025-10-30 14:35:28,754][INFO][test_job][sji - log_config] api_key = ********
+[2025-10-30 14:35:28,755][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:35:28,755][INFO][test_job][sji - log_config] password = ********
+[2025-10-30 14:35:28,755][INFO][test_job][sji - log_config] token = ********
+[2025-10-30 14:35:28,756][INFO][test_job][test_job - <module>] Tempfile created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:35:29,757][INFO][test_job][test_job - <module>] Tempfile deleted: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:35:29,760][INFO][test_job][test_job - <module>] Persistent file created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\test_job.txt
+[2025-10-30 14:35:29,760][INFO][test_job][test_job - <module>] Test job finished
+[2025-10-30 14:36:15,839][INFO][test_job][test_job - <module>] Test job started
+[2025-10-30 14:36:16,511][INFO][test_job][test_job - <module>] job_version=git_ab8e170e_dirty
+[2025-10-30 14:36:16,512][INFO][test_job][test_job - <module>] config_hash=ec3e6aef5eba287cfeb5ae659ba832089ef6e049bf990a6e0bb5a422c59d89f0
+[2025-10-30 14:36:16,512][INFO][test_job][test_job - <module>] config_version=cfg_2025-10-30_13:27:07_ec3e6aef5eba287cfeb5ae659ba832089ef6e049bf990a6e0bb5a422c59d89f0
+[2025-10-30 14:36:16,512][INFO][test_job][sji - log_config] Konfiguration (maskiert):
+[2025-10-30 14:36:16,513][INFO][test_job][sji - log_config] [db_config]
+[2025-10-30 14:36:16,513][INFO][test_job][sji - log_config] db_host = localhost
+[2025-10-30 14:36:16,513][INFO][test_job][sji - log_config] db_name = test_db
+[2025-10-30 14:36:16,513][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:36:16,514][INFO][test_job][sji - log_config] db_port = 5432
+[2025-10-30 14:36:16,514][INFO][test_job][sji - log_config] db_user = postgres
+[2025-10-30 14:36:16,514][INFO][test_job][sji - log_config] [logging]
+[2025-10-30 14:36:16,514][INFO][test_job][sji - log_config] level = DEBUG
+[2025-10-30 14:36:16,514][INFO][test_job][sji - log_config] log_rotation_backup_count = 0
+[2025-10-30 14:36:16,514][INFO][test_job][sji - log_config] log_rotation_when = midnight
+[2025-10-30 14:36:16,515][INFO][test_job][sji - log_config] [secrets]
+[2025-10-30 14:36:16,515][INFO][test_job][sji - log_config] api_key = ********
+[2025-10-30 14:36:16,515][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:36:16,515][INFO][test_job][sji - log_config] password = ********
+[2025-10-30 14:36:16,515][INFO][test_job][sji - log_config] token = ********
+[2025-10-30 14:36:16,515][INFO][test_job][sji - log_config] Konfiguration (maskiert):
+[2025-10-30 14:36:16,516][INFO][test_job][sji - log_config] [db_config]
+[2025-10-30 14:36:16,516][INFO][test_job][sji - log_config] db_host = localhost
+[2025-10-30 14:36:16,516][INFO][test_job][sji - log_config] db_name = test_db
+[2025-10-30 14:36:16,516][INFO][test_job][sji - log_config] db_password = 1234567890
+[2025-10-30 14:36:16,517][INFO][test_job][sji - log_config] db_port = 5432
+[2025-10-30 14:36:16,517][INFO][test_job][sji - log_config] db_user = postgres
+[2025-10-30 14:36:16,517][INFO][test_job][sji - log_config] [logging]
+[2025-10-30 14:36:16,517][INFO][test_job][sji - log_config] level = DEBUG
+[2025-10-30 14:36:16,518][INFO][test_job][sji - log_config] log_rotation_backup_count = 0
+[2025-10-30 14:36:16,518][INFO][test_job][sji - log_config] log_rotation_when = midnight
+[2025-10-30 14:36:16,518][INFO][test_job][sji - log_config] [secrets]
+[2025-10-30 14:36:16,518][INFO][test_job][sji - log_config] api_key = 1234567890
+[2025-10-30 14:36:16,518][INFO][test_job][sji - log_config] db_password = 1234567890
+[2025-10-30 14:36:16,519][INFO][test_job][sji - log_config] password = 1234567890
+[2025-10-30 14:36:16,519][INFO][test_job][sji - log_config] token = 1234567890
+[2025-10-30 14:36:16,521][INFO][test_job][test_job - <module>] Tempfile created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:36:17,522][INFO][test_job][test_job - <module>] Tempfile deleted: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:36:17,524][INFO][test_job][test_job - <module>] Persistent file created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\test_job.txt
+[2025-10-30 14:36:17,524][INFO][test_job][test_job - <module>] Test job finished
+[2025-10-30 14:39:28,897][INFO][test_job][test_job - <module>] Test job started
+[2025-10-30 14:39:29,646][INFO][test_job][test_job - <module>] job_version=git_ab8e170e_dirty
+[2025-10-30 14:39:29,647][INFO][test_job][test_job - <module>] config_hash=c62f5419e247d18f8eec298b2c1955710b510448f9bc1304a3a56f4ec6d0998f
+[2025-10-30 14:39:29,647][INFO][test_job][test_job - <module>] config_version=cfg_2025-10-30_13:27:07_c62f5419e247d18f8eec298b2c1955710b510448f9bc1304a3a56f4ec6d0998f
+[2025-10-30 14:39:29,647][INFO][test_job][sji - log_config] Konfiguration (maskiert):
+[2025-10-30 14:39:29,647][INFO][test_job][sji - log_config] [db_config]
+[2025-10-30 14:39:29,647][INFO][test_job][sji - log_config] db_host = localhost
+[2025-10-30 14:39:29,647][INFO][test_job][sji - log_config] db_name = test_db
+[2025-10-30 14:39:29,647][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:39:29,647][INFO][test_job][sji - log_config] db_port = 5432
+[2025-10-30 14:39:29,648][INFO][test_job][sji - log_config] db_user = postgres
+[2025-10-30 14:39:29,648][INFO][test_job][sji - log_config] [logging]
+[2025-10-30 14:39:29,648][INFO][test_job][sji - log_config] level = DEBUG
+[2025-10-30 14:39:29,648][INFO][test_job][sji - log_config] log_rotation_backup_count = 0
+[2025-10-30 14:39:29,648][INFO][test_job][sji - log_config] log_rotation_when = midnight
+[2025-10-30 14:39:29,648][INFO][test_job][sji - log_config] [secrets]
+[2025-10-30 14:39:29,648][INFO][test_job][sji - log_config] api_key = ********
+[2025-10-30 14:39:29,648][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:39:29,648][INFO][test_job][sji - log_config] password = ********
+[2025-10-30 14:39:29,648][INFO][test_job][sji - log_config] token = ********
+[2025-10-30 14:39:29,649][INFO][test_job][sji - log_config] Konfiguration (maskiert):
+[2025-10-30 14:39:29,649][INFO][test_job][sji - log_config] [db_config]
+[2025-10-30 14:39:29,649][INFO][test_job][sji - log_config] db_host = localhost
+[2025-10-30 14:39:29,649][INFO][test_job][sji - log_config] db_name = test_db
+[2025-10-30 14:39:29,649][INFO][test_job][sji - log_config] db_password = 1234567890
+[2025-10-30 14:39:29,649][INFO][test_job][sji - log_config] db_port = 5432
+[2025-10-30 14:39:29,649][INFO][test_job][sji - log_config] db_user = postgres
+[2025-10-30 14:39:29,649][INFO][test_job][sji - log_config] [logging]
+[2025-10-30 14:39:29,649][INFO][test_job][sji - log_config] level = DEBUG
+[2025-10-30 14:39:29,650][INFO][test_job][sji - log_config] log_rotation_backup_count = 0
+[2025-10-30 14:39:29,650][INFO][test_job][sji - log_config] log_rotation_when = midnight
+[2025-10-30 14:39:29,650][INFO][test_job][sji - log_config] [secrets]
+[2025-10-30 14:39:29,651][INFO][test_job][sji - log_config] api_key = 1234567890
+[2025-10-30 14:39:29,651][INFO][test_job][sji - log_config] db_password = 1234567890
+[2025-10-30 14:39:29,651][INFO][test_job][sji - log_config] password = 1234567890
+[2025-10-30 14:39:29,651][INFO][test_job][sji - log_config] token = 1234567890
+[2025-10-30 14:39:29,653][INFO][test_job][test_job - <module>] Tempfile created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:39:30,654][INFO][test_job][test_job - <module>] Tempfile deleted: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:39:30,658][INFO][test_job][test_job - <module>] Persistent file created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\test_job.txt
+[2025-10-30 14:39:30,659][INFO][test_job][test_job - <module>] Test job finished
+[2025-10-30 14:39:42,624][INFO][test_job][test_job - <module>] Test job started
+[2025-10-30 14:39:43,264][INFO][test_job][test_job - <module>] job_version=git_ab8e170e_dirty
+[2025-10-30 14:39:43,264][INFO][test_job][test_job - <module>] config_hash=c62f5419e247d18f8eec298b2c1955710b510448f9bc1304a3a56f4ec6d0998f
+[2025-10-30 14:39:43,264][INFO][test_job][test_job - <module>] config_version=cfg_2025-10-30_13:27:07_c62f5419e247d18f8eec298b2c1955710b510448f9bc1304a3a56f4ec6d0998f
+[2025-10-30 14:39:43,264][INFO][test_job][sji - log_config] Konfiguration (maskiert):
+[2025-10-30 14:39:43,264][INFO][test_job][sji - log_config] [db_config]
+[2025-10-30 14:39:43,265][INFO][test_job][sji - log_config] db_host = localhost
+[2025-10-30 14:39:43,265][INFO][test_job][sji - log_config] db_name = test_db
+[2025-10-30 14:39:43,265][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:39:43,265][INFO][test_job][sji - log_config] db_port = 5432
+[2025-10-30 14:39:43,265][INFO][test_job][sji - log_config] db_user = postgres
+[2025-10-30 14:39:43,265][INFO][test_job][sji - log_config] [logging]
+[2025-10-30 14:39:43,265][INFO][test_job][sji - log_config] level = DEBUG
+[2025-10-30 14:39:43,265][INFO][test_job][sji - log_config] log_rotation_backup_count = 0
+[2025-10-30 14:39:43,265][INFO][test_job][sji - log_config] log_rotation_when = midnight
+[2025-10-30 14:39:43,265][INFO][test_job][sji - log_config] [secrets]
+[2025-10-30 14:39:43,266][INFO][test_job][sji - log_config] api_key = ********
+[2025-10-30 14:39:43,266][INFO][test_job][sji - log_config] db_password = ********
+[2025-10-30 14:39:43,266][INFO][test_job][sji - log_config] password = ********
+[2025-10-30 14:39:43,266][INFO][test_job][sji - log_config] token = ********
+[2025-10-30 14:39:43,266][INFO][test_job][sji - log_config] Konfiguration (maskiert):
+[2025-10-30 14:39:43,266][INFO][test_job][sji - log_config] [db_config]
+[2025-10-30 14:39:43,266][INFO][test_job][sji - log_config] db_host = localhost
+[2025-10-30 14:39:43,266][INFO][test_job][sji - log_config] db_name = test_db
+[2025-10-30 14:39:43,266][INFO][test_job][sji - log_config] db_password = 1234567890
+[2025-10-30 14:39:43,266][INFO][test_job][sji - log_config] db_port = 5432
+[2025-10-30 14:39:43,266][INFO][test_job][sji - log_config] db_user = postgres
+[2025-10-30 14:39:43,266][INFO][test_job][sji - log_config] [logging]
+[2025-10-30 14:39:43,266][INFO][test_job][sji - log_config] level = DEBUG
+[2025-10-30 14:39:43,267][INFO][test_job][sji - log_config] log_rotation_backup_count = 0
+[2025-10-30 14:39:43,267][INFO][test_job][sji - log_config] log_rotation_when = midnight
+[2025-10-30 14:39:43,267][INFO][test_job][sji - log_config] [secrets]
+[2025-10-30 14:39:43,267][INFO][test_job][sji - log_config] api_key = 1234567890
+[2025-10-30 14:39:43,267][INFO][test_job][sji - log_config] db_password = 1234567890
+[2025-10-30 14:39:43,267][INFO][test_job][sji - log_config] password = 1234567890
+[2025-10-30 14:39:43,267][INFO][test_job][sji - log_config] token = 1234567890
+[2025-10-30 14:39:43,268][INFO][test_job][test_job - <module>] Tempfile created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:39:44,270][INFO][test_job][test_job - <module>] Tempfile deleted: c:\Users\kasperidus\Code\simple-job-init\example\test_job\tmp\test.txt
+[2025-10-30 14:39:44,272][INFO][test_job][test_job - <module>] Persistent file created: c:\Users\kasperidus\Code\simple-job-init\example\test_job\test_job.txt
+[2025-10-30 14:39:44,272][INFO][test_job][test_job - <module>] Test job finished

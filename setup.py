@@ -9,7 +9,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="sji",
-    version="0.2.2",
+    version="0.3.1",
     author="matzek92",
     author_email="matthias@kasperidus.de",
     description="SJI - Eine einfache Python-Bibliothek für Job-Initialisierung",

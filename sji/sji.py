@@ -2,10 +2,9 @@
 Einfache Helper-Funktionen für Job-Initialisierung.
 """
 
-from typing import Dict, Any
 from datetime import datetime, timezone
-import uuid
 import os
+import re
 import logging
 from logging.handlers import TimedRotatingFileHandler
 import configparser
@@ -19,6 +18,9 @@ class SimpleJobInit(object):
         self._script_file_path = script_file_path
         self._script_dir = os.path.dirname(script_file_path)
         self._script_basename = os.path.basename(script_file_path).replace(".py", "")
+        
+        # Initialize persistent files path stub early (needed for credential resolution)
+        self._persistent_files_path_stub = os.path.join(self._script_dir, f"{self._script_basename}")
                 
         self._log_folder = os.path.join(self._script_dir, "logs")
         if not os.path.exists(self._log_folder):
@@ -31,6 +33,9 @@ class SimpleJobInit(object):
             self._config.read(self._config_filepath)
         else:
             raise ValueError("Config file {} missing...".format(self._config_filepath))
+        
+        # Resolve credential placeholders after loading config
+        self._resolve_credential_placeholders()
 
         logging.basicConfig(level=logging.INFO, format='[%(asctime)s][%(levelname)s][%(name)s][%(module)s - %(funcName)s] %(message)s')
         self._logger = logging.getLogger(self._script_basename)
@@ -53,7 +58,6 @@ class SimpleJobInit(object):
         self._tmp_folder = os.path.join(self._script_dir, "tmp")
         if not os.path.exists(self._tmp_folder):
             os.makedirs(self._tmp_folder)
-        self._persistent_files_path_stub = os.path.join(self._script_dir, f"{self._script_basename}")
 
     @property
     def logger(self):
@@ -80,8 +84,47 @@ class SimpleJobInit(object):
                 hasher.update(chunk)
         return hasher.hexdigest()
 
+    def _resolve_credential_placeholders(self):
+        """Ersetzt Platzhalter [[[[name]]]] in der Konfiguration mit Werten aus credentials.ini.
+        
+        Die Platzhalter werden durch Werte aus derselben Section und mit demselben Key-Namen
+        aus der credentials.ini-Datei ersetzt. Wenn credentials.ini nicht existiert oder
+        ein Platzhalter nicht gefunden wird, bleibt der Platzhalter unverändert.
+        """
+        credentials_filepath = self.get_persistent_file_path("credentials.ini")
+        if not os.path.isfile(credentials_filepath):
+            # credentials.ini ist optional - wenn nicht vorhanden, keine Ersetzung
+            return
+        
+        credentials = configparser.ConfigParser()
+        credentials.read(credentials_filepath)
+        
+        # Pattern für Platzhalter: [[[[name]]]]
+        placeholder_pattern = re.compile(r'\[\[\[\[([A-Za-z0-9_]+)\]\]\]\]')
+        
+        # Durch alle Sections und Keys iterieren
+        for section in self._config.sections():
+            if not credentials.has_section(section):
+                continue
+            
+            for key in self._config[section]:
+                value = self._config[section][key]
+                
+                # Suche nach Platzhaltern im Wert
+                def replace_placeholder(match):
+                    placeholder_key = match.group(1)
+                    # Suche in derselben Section nach dem Key
+                    if credentials.has_option(section, placeholder_key):
+                        return credentials.get(section, placeholder_key)
+                    # Wenn nicht gefunden, Platzhalter unverändert lassen
+                    return match.group(0)
+                
+                # Ersetze alle Platzhalter im Wert
+                resolved_value = placeholder_pattern.sub(replace_placeholder, value)
+                self._config.set(section, key, resolved_value)
+
     @property
-    def credentials(self) -> Dict[str, Any]:
+    def credentials(self) -> configparser.ConfigParser:
         credentials_filepath = self.get_persistent_file_path("credentials.ini")
         if not os.path.isfile(credentials_filepath):
             raise ValueError("Credentials file {} missing...".format(credentials_filepath))

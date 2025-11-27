@@ -2,7 +2,7 @@ import time
 import os
 from datetime import datetime
 
-from sji.sji import SimpleJobInit
+from sji import SimpleJobInit
 
 
 if __name__ == "__main__":

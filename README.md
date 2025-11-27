@@ -60,6 +60,53 @@ log_rotation_backup_count = 7
 key = some-value
 ```
 
+## Credential-Ersetzung
+
+SJI unterstützt die automatische Ersetzung von Platzhaltern in der Konfigurationsdatei durch Werte aus einer separaten `credentials.ini`-Datei.
+Dies ermöglicht es, sensible Daten wie Passwörter oder API-Schlüssel getrennt von der Hauptkonfiguration zu verwalten.
+
+### Funktionsweise
+
+1. **Platzhalter-Format**: In der `config.ini` können Platzhalter im Format `[[[[name]]]]` verwendet werden.
+2. **Credentials-Datei**: Die Datei `<skriptname>.credentials.ini` wird automatisch im selben Verzeichnis wie das Skript gesucht.
+3. **Ersetzung**: Platzhalter werden durch Werte aus derselben Section und mit demselben Key-Namen aus der `credentials.ini` ersetzt.
+4. **Optional**: Wenn die `credentials.ini` nicht existiert, bleiben die Platzhalter unverändert.
+
+### Beispiel
+
+**`test_job.config.ini`:**
+```ini
+[db_config]
+db_user = postgres
+db_password = [[[[db_password]]]]
+db_host = localhost
+db_port = 5432
+db_name = test_db
+
+[api]
+api_key = [[[[api_key]]]]
+```
+
+**`test_job.credentials.ini`:**
+```ini
+[db_config]
+db_password = my_secret_password_123
+
+[api]
+api_key = api_key_abc123xyz
+```
+
+Nach der Initialisierung von `SimpleJobInit` werden die Platzhalter automatisch ersetzt:
+- `db_password` wird zu `my_secret_password_123`
+- `api_key` wird zu `api_key_abc123xyz`
+
+### Hinweise
+
+- Die `credentials.ini` sollte **nicht** in Versionskontrolle (Git) eingecheckt werden
+- Platzhalter können nur durch Werte aus derselben Section ersetzt werden
+- Wenn ein Platzhalter nicht in der `credentials.ini` gefunden wird, bleibt er unverändert
+- Die Ersetzung erfolgt automatisch beim Laden der Konfiguration
+
 ## API
 
 ### Klasse: SimpleJobInit

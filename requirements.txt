@@ -1,2 +1,2 @@
-# Keine externen Abhängigkeiten
+# Optionale Abhängigkeiten für erweiterte Funktionalität
 GitPython>=3.1.0
