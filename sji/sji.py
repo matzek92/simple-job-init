@@ -9,6 +9,7 @@ import logging
 from logging.handlers import TimedRotatingFileHandler
 import configparser
 import hashlib
+from typing import Iterable, Mapping, Dict, Set
 
 
 class SimpleJobInit(object):
@@ -21,6 +22,10 @@ class SimpleJobInit(object):
         
         # Initialize persistent files path stub early (needed for credential resolution)
         self._persistent_files_path_stub = os.path.join(self._script_dir, f"{self._script_basename}")
+        
+        # Track fields that were replaced with credentials (for automatic masking in logs)
+        # Dict[section_lower, Set[field_lower]]
+        self._credential_replaced_fields: Dict[str, Set[str]] = {}
                 
         self._log_folder = os.path.join(self._script_dir, "logs")
         if not os.path.exists(self._log_folder):
@@ -30,15 +35,18 @@ class SimpleJobInit(object):
         self._config_filepath = os.path.join(self._script_dir, f"{self._script_basename}.config.ini")
         self._config = configparser.ConfigParser()
         if os.path.isfile(self._config_filepath):
-            self._config.read(self._config_filepath)
+            try:
+                self._config.read(self._config_filepath)
+            except (configparser.Error, OSError) as exc:
+                raise ValueError(f"Config file {self._config_filepath} could not be read: {exc}") from exc
         else:
             raise ValueError("Config file {} missing...".format(self._config_filepath))
         
-        # Resolve credential placeholders after loading config
-        self._resolve_credential_placeholders()
+        if not logging.getLogger().handlers:
+            logging.basicConfig(level=logging.INFO, format='[%(asctime)s][%(levelname)s][%(name)s][%(module)s - %(funcName)s] %(message)s')
 
-        logging.basicConfig(level=logging.INFO, format='[%(asctime)s][%(levelname)s][%(name)s][%(module)s - %(funcName)s] %(message)s')
         self._logger = logging.getLogger(self._script_basename)
+        self._logger.setLevel(logging.INFO)
         
         if self._config.has_section('logging'):
 
@@ -48,29 +56,52 @@ class SimpleJobInit(object):
 
             log_rotation_when = logging_config.get('log_rotation_when', 'midnight')
             log_rotation_backup_count = int(logging_config.get('log_rotation_backup_count', 0))
-            log_file_handler = TimedRotatingFileHandler(self._log_filepath, encoding='utf-8', when=log_rotation_when, backupCount=log_rotation_backup_count)
+            log_file_handler_exists = any(
+                isinstance(h, TimedRotatingFileHandler) and getattr(h, "baseFilename", None) == self._log_filepath
+                for h in self._logger.handlers
+            )
             log_format = logging_config.get('log_format', '[%(asctime)s][%(levelname)s][%(name)s][%(module)s - %(funcName)s] %(message)s')
             formatter = logging.Formatter(log_format)
-            log_file_handler.setFormatter(formatter)
-            self._logger.addHandler(log_file_handler)
+
+            if not log_file_handler_exists:
+                log_file_handler = TimedRotatingFileHandler(
+                    self._log_filepath,
+                    encoding='utf-8',
+                    when=log_rotation_when,
+                    backupCount=log_rotation_backup_count
+                )
+                log_file_handler.setFormatter(formatter)
+                self._logger.addHandler(log_file_handler)
+
+            # Optional: zusätzlicher Console-Handler
+            if logging_config.getboolean('console', False):
+                console_exists = any(isinstance(h, logging.StreamHandler) and not isinstance(h, TimedRotatingFileHandler) for h in self._logger.handlers)
+                if not console_exists:
+                    console_handler = logging.StreamHandler()
+                    console_handler.setFormatter(formatter)
+                    self._logger.addHandler(console_handler)
+
+            # Propagation steuern
+            self._logger.propagate = logging_config.getboolean('propagate', False)
         
-       
         self._tmp_folder = os.path.join(self._script_dir, "tmp")
         if not os.path.exists(self._tmp_folder):
             os.makedirs(self._tmp_folder)
+        
+        self._resolve_credential_placeholders()
 
     @property
-    def logger(self):
+    def logger(self) -> logging.Logger:
         return self._logger
 
     @property
-    def config(self):
+    def config(self) -> configparser.ConfigParser:
         return self._config
 
-    def get_tmp_file_path(self, file_name: str):
+    def get_tmp_file_path(self, file_name: str) -> str:
         return os.path.join(self._tmp_folder, file_name)
 
-    def get_persistent_file_path(self, file_ending: str):
+    def get_persistent_file_path(self, file_ending: str) -> str:
         return f"{self._persistent_files_path_stub}.{file_ending}"
 
     def get_job_script_version(self, include_git_tag: bool = False):
@@ -90,46 +121,97 @@ class SimpleJobInit(object):
         Die Platzhalter werden durch Werte aus derselben Section und mit demselben Key-Namen
         aus der credentials.ini-Datei ersetzt. Wenn credentials.ini nicht existiert oder
         ein Platzhalter nicht gefunden wird, bleibt der Platzhalter unverändert.
+        
+        Felder, die durch Credentials ersetzt wurden, werden für automatische Maskierung
+        in log_config() gespeichert.
         """
+
         credentials_filepath = self.get_persistent_file_path("credentials.ini")
+
         if not os.path.isfile(credentials_filepath):
-            # credentials.ini ist optional - wenn nicht vorhanden, keine Ersetzung
+            self._logger.warning("Credentials file %s missing; placeholders remain unresolved.", credentials_filepath)
             return
         
         credentials = configparser.ConfigParser()
-        credentials.read(credentials_filepath)
+        try:
+            read_files = credentials.read(credentials_filepath)
+        except (configparser.Error, OSError) as exc:
+            raise ValueError(f"Credentials file {credentials_filepath} could not be read: {exc}") from exc
+
+        if not read_files:
+            self._logger.warning("Credentials file %s could not be read; placeholders remain unresolved.", credentials_filepath)
+            return
         
         # Pattern für Platzhalter: [[[[name]]]]
         placeholder_pattern = re.compile(r'\[\[\[\[([A-Za-z0-9_]+)\]\]\]\]')
+
+        replaced_fields = []
+        missing_placeholders = []
         
         # Durch alle Sections und Keys iterieren
         for section in self._config.sections():
+            section_has_placeholder = False
             if not credentials.has_section(section):
+                # Nur warnen, wenn Platzhalter vorhanden wären
+                for key in self._config[section]:
+                    if placeholder_pattern.search(self._config[section][key]):
+                        section_has_placeholder = True
+                        break
+                if section_has_placeholder:
+                    self._logger.warning("Credentials section [%s] missing for placeholder resolution.", section)
                 continue
             
             for key in self._config[section]:
                 value = self._config[section][key]
+                
+                # Prüfe, ob der Wert Platzhalter enthält
+                has_placeholder = bool(placeholder_pattern.search(value))
                 
                 # Suche nach Platzhaltern im Wert
                 def replace_placeholder(match):
                     placeholder_key = match.group(1)
                     # Suche in derselben Section nach dem Key
                     if credentials.has_option(section, placeholder_key):
+                        replaced_fields.append((section, key, placeholder_key))
                         return credentials.get(section, placeholder_key)
-                    # Wenn nicht gefunden, Platzhalter unverändert lassen
+                    # Wenn nicht gefunden, Platzhalter unverändert lassen und merken
+                    missing_placeholders.append((section, placeholder_key))
                     return match.group(0)
                 
                 # Ersetze alle Platzhalter im Wert
                 resolved_value = placeholder_pattern.sub(replace_placeholder, value)
+                
+                # Wenn Platzhalter vorhanden waren und der Wert sich geändert hat, Feld merken
+                if has_placeholder and resolved_value != value:
+                    self._credential_replaced_fields.setdefault(section.lower(), set()).add(key.lower())
+                
                 self._config.set(section, key, resolved_value)
+
+        if replaced_fields:
+            self._logger.info(
+                "Replaced credential placeholders for: %s",
+                ", ".join(f"[{s}].{k}" for s, k, _ in replaced_fields)
+            )
+
+        if missing_placeholders:
+            # Deduplicate warnings
+            missing_seen = {(s.lower(), k.lower()) for s, k in missing_placeholders}
+            for section_lower, key_lower in sorted(missing_seen):
+                self._logger.warning("Credential placeholder missing value: [%s].%s", section_lower, key_lower)
 
     @property
     def credentials(self) -> configparser.ConfigParser:
+        
         credentials_filepath = self.get_persistent_file_path("credentials.ini")
         if not os.path.isfile(credentials_filepath):
             raise ValueError("Credentials file {} missing...".format(credentials_filepath))
         credentials = configparser.ConfigParser()
-        credentials.read(credentials_filepath)
+        try:
+            read_files = credentials.read(credentials_filepath)
+        except (configparser.Error, OSError) as exc:
+            raise ValueError(f"Credentials file {credentials_filepath} could not be read: {exc}") from exc
+        if not read_files:
+            raise ValueError("Credentials file {} could not be read...".format(credentials_filepath))
         return credentials
 
     def get_config_file_version(self) -> str:
@@ -144,21 +226,57 @@ class SimpleJobInit(object):
         cfg_hash = self.get_config_file_hash()  
         return f"cfg_{formatted_timestamp}_{cfg_hash}"
 
-    def log_config(self, secret_fields=None):
+    def log_config(self, secret_fields: Mapping[str, Iterable[str]] | None = None):
         """Loggt die aktuelle Konfiguration, maskiert angegebene Geheimfelder.
 
+        Felder, die durch Credentials ersetzt wurden, werden automatisch maskiert.
+
         Args:
-            secret_fields: Iterable von Feldnamen (case-insensitive), die maskiert
-                           werden sollen; gilt für alle Sections.
+            secret_fields: Mapping mit Section-Namen als Keys (case-insensitive)
+                           und Iterables von Feldnamen als Values (case-insensitive),
+                           die zusätzlich maskiert werden sollen.
+                           Beispiel: {'database': ['password', 'user'], 'api': ['api_key']}
         """
     
-        secret_set = {str(name).lower() for name in (secret_fields or [])}
+        # Default-Masken aus Credential-Ersetzungen kopieren
+        secret_dict: Dict[str, Set[str]] = {
+            section: fields.copy() for section, fields in self._credential_replaced_fields.items()
+        }
+
+        config_sections = {section.lower() for section in self._config.sections()}
+
+        if secret_fields:
+            if not isinstance(secret_fields, Mapping):
+                raise TypeError("secret_fields muss ein Mapping sein: {section: [field1, field2, ...]}")
+            
+            for section, fields in secret_fields.items():
+                section_lower = str(section).lower()
+                if isinstance(fields, str):
+                    fields_iterable = [fields]
+                else:
+                    try:
+                        fields_iterable = list(fields)
+                    except TypeError as exc:
+                        raise TypeError("secret_fields values müssen iterierbar sein (z.B. Liste).") from exc
+
+                field_set = {str(field).lower() for field in fields_iterable}
+                secret_dict.setdefault(section_lower, set()).update(field_set)
+
+                if section_lower not in config_sections:
+                    self._logger.warning("secret_fields section '%s' not present in config.", section)
 
         self._logger.info("Konfiguration (maskiert):")
         for section in sorted(self._config.sections()):
             self._logger.info(f"[{section}]")
             for key, value in sorted(self._config.items(section)):
-                display_value = '********' if key.lower() in secret_set else value.strip()
+                section_lower = section.lower()
+                key_lower = key.lower()
+                
+                # Prüfe ob Feld automatisch oder manuell maskiert werden soll
+                section_mask = secret_dict.get(section_lower, set())
+                is_masked = key_lower in section_mask
+                
+                display_value = '********' if is_masked else value.strip()
                 self._logger.info(f"{key} = {display_value}")
 
     def get_postgres_sqlalchemy_engine(self, db_config: configparser.ConfigParser):
